@@ -4,6 +4,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
+        "mobile-bg-light": "url('./src/assets/images/bg-mobile-light.jpg')",
+        "desktop-bg-light": "url('./src/assets/images/bg-desktop-light.jpg')",
         "check-bg": "linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))",
       },
       colors: {
