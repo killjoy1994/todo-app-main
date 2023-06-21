@@ -1,18 +1,22 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import moonLogo from "./assets/images/icon-moon.svg";
+import TextInput from "./components/TextInput";
+import TodoList from "./components/TodoList";
 
 function App() {
-
+  const [todo, setTodo] = useState("");
   return (
-    <div className='min-h-screen sm:mx-auto sm:max-w-[1440px] relative'>
-      {/* Image Background */}
-      <div className='absolute -z-50 left-0 top-0 w-full h-[200px] xl:h-[300px] bg-mobile-bg-light sm:bg-desktop-bg-light bg-no-repeat bg-cover bg-[position:center_top]'></div>
-      <header className=''>
-        <h1 className='text-4xl font-medium tracking-[5px] text-slate-50'>TODO</h1>
-        <img src="" alt="" />
-      </header>
+    <div className="min-h-screen ">
+      <div className="w-full h-[30vh] bg-mobile-bg-light xs:bg-desktop-bg-light bg-no-repeat bg-cover bg-top"></div>
+      <div className="mx-auto max-w-[600px] relative top-[-150px] px-6 h-[700px]">
+        <Header />
+        <TextInput />
+        <TodoList />
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
