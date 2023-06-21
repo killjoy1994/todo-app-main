@@ -9,6 +9,9 @@ import Footer from "./components/Footer";
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [activeTodos, setActiveTodos] = useState([]);
+  const [completedTodos, setCompletedTodos] = useState([])
+  const [activeState, setActiveState] = useState("all")
 
   console.log("todos: ", todos)
   return (
@@ -17,8 +20,23 @@ function App() {
       <div className="mx-auto max-w-[600px] relative top-[-150px] px-6 h-[700px]">
         <Header />
         <TextInput setTodos={setTodos} />
-        <TodoList todos={todos} />
-        <TodosFilter />
+        <TodoList 
+          todos={todos}
+          setTodos={setTodos}
+          setActiveTodos={setActiveTodos}
+          setCompletedTodos={setCompletedTodos}
+          activeState={activeState}
+          activeTodos={activeTodos}
+          completedTodos={completedTodos}  
+        />
+        <TodosFilter 
+          todos={todos}
+          setTodos={setTodos} 
+          setActiveTodos={setActiveTodos} 
+          setCompletedTodos={setCompletedTodos}
+          activeState={activeState}
+          setActiveState={setActiveState}
+        />
         <Footer />
       </div>
     </div>

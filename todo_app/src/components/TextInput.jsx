@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Circle from "./elements/Circle";
+import {v4 as uuid} from "uuid"
 
 export default function TextInput({ setTodos }) {
   const [todo, setTodo] = useState("");
@@ -8,7 +9,12 @@ export default function TextInput({ setTodos }) {
     if (e.key === "Enter") {
       e.preventDefault();
       setTodos((prevState) => {
-        return [...prevState, todo];
+        const id = uuid()
+        return [...prevState, {
+          todo: todo,
+          isCompleted: false,
+          id: id
+        }];
       });
       setTodo("");
     }
