@@ -13,7 +13,7 @@ function App() {
   const [completedTodos, setCompletedTodos] = useState([])
   const [activeState, setActiveState] = useState("all")
 
-  console.log("todos: ", todos)
+  // console.log("todos: ", todos)
   return (
     <div className="min-h-screen ">
       <div className="w-full h-[30vh] bg-mobile-bg-light xs:bg-desktop-bg-light bg-no-repeat bg-cover bg-top"></div>
