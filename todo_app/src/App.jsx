@@ -19,7 +19,7 @@ function App() {
       <div className="w-full h-[30vh] bg-mobile-bg-light xs:bg-desktop-bg-light bg-no-repeat bg-cover bg-top"></div>
       <div className="mx-auto max-w-[600px] relative top-[-150px] px-6 h-[700px]">
         <Header />
-        <TextInput setTodos={setTodos} />
+        <TextInput setTodos={setTodos} activeState={activeState} setActiveTodos={setActiveState} />
         <TodoList 
           todos={todos}
           setTodos={setTodos}
