@@ -1,21 +1,23 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-export default function TodoList({ todos, activeState, setTodos}) {
-  let state;
+export default function TodoList({ todos, activeTodos, completedTodos, activeState, setTodos, setActiveTodos, setCompletedTodos }) {
+  let pickedState;
+  let pickedFunc;
 
   if (activeState == "all" || null) {
-    state = todos;
-   
+    pickedState = todos;
+    pickedFunc = setTodos;
   } else if (activeState == "active") {
-    state = todos.filter(todo => !todo.isCompleted);
-
+    pickedState = activeTodos;
+    pickedFunc = setActiveTodos;
   } else if (activeState == "completed") {
-    state = todos.filter(todo => todo.isCompleted);
-  
+    pickedState = completedTodos;
+    pickedFunc = setCompletedTodos;
   }
 
   const onClearComplete = () => {
+    setCompletedTodos([]);
     setTodos((prevState) => {
       return prevState.filter((data) => {
         return !data.isCompleted;
@@ -42,15 +44,13 @@ export default function TodoList({ todos, activeState, setTodos}) {
     if(activeState == "active" || activeState == "completed") {
       setTodos(items);
     }
-    setTodos(items);
+    pickedFunc(items);
   };
-
-  console.log("State: ", state)
 
   return (
     <div className="w-full mt-6 rounded bg-white">
       <div className="flex flex-col gap-y-2 rounded-[inherit]">
-        {state.map((todo, index) => {
+        {pickedState.map((todo, index) => {
           return (
             <TodoItem
               draggable
@@ -61,12 +61,13 @@ export default function TodoList({ todos, activeState, setTodos}) {
               todo={todo}
               activeState={activeState}
               setTodos={setTodos}
+              pickedFunc={pickedFunc}
             />
           );
         })}
       </div>
       <div className="flex justify-between text-sm text-neutral-light-dark-grayish-blue px-3 py-3">
-        <p>{state.length} items left</p>
+        <p>{pickedState.length} items left</p>
         <button onClick={onClearComplete} className="inline-block">
           Clear Completed
         </button>

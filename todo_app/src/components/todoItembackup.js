@@ -13,9 +13,14 @@ export default function TodoItem({ todo, setTodos, activeState, pickedFunc, ...p
   };
 
   useEffect(() => {
+    // if(activeState === "completed") {
+
+    // }
     setTodos((prevState) => {
       return prevState.map((data) => {
         if (data.id === todoId) {
+          // console.log("COMPLETED: ", data.isCompleted)
+          // data.isCompleted = (data.isCompleted === false) ? true : false
           data.isCompleted = !data.isCompleted
         }
         return data;
@@ -25,9 +30,18 @@ export default function TodoItem({ todo, setTodos, activeState, pickedFunc, ...p
 
 
   const onDeleteHandler = (id) => {
-    setTodos((prevState) => {
-      return prevState.filter((data) => data.id !== id);
-    });
+    if (activeState == "active" || activeState == "completed") {
+      pickedFunc((prevState) => {
+        return prevState.filter((data) => data.id !== id);
+      });
+      setTodos((prevState) => {
+        return prevState.filter((data) => data.id !== id);
+      });
+    } else {
+      setTodos((prevState) => {
+        return prevState.filter((data) => data.id !== id);
+      });
+    }
   };
 
   // console.log("Checked: ", isChecked)

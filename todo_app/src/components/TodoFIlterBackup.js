@@ -1,15 +1,27 @@
 import React from "react";
 
-export default function TodosFilter({ todos, activeState, setActiveState }) {
+export default function TodosFilter({ todos, setActiveTodos, setCompletedTodos, activeState, setActiveState }) {
   const onAllHandler = () => {
     setActiveState("all")
   };
 
   const onActiveHandler = () => {
+    const filtered = todos.filter((data) => {
+      if (data.isCompleted === false) {
+        return data;
+      }
+    });
+    setActiveTodos(filtered);
     setActiveState("active")
   };
 
   const onCompletedHandler = () => {
+    const filtered = todos.filter((data) => {
+      if (data.isCompleted === true) {
+        return data;
+      }
+    });
+    setCompletedTodos(filtered);
     setActiveState("completed")
   };
 
