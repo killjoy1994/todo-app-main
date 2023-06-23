@@ -9,6 +9,10 @@ body {
   background-color: hsl(236, 33%, 92%);
 }
 
+.dark-bg {
+  background-color: hsl(235, 24%, 19%);
+}
+
 .custom-checkbox {
   border: none;
   appearance: none;

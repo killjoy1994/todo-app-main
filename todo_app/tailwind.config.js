@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       screens: {
@@ -8,7 +9,9 @@ export default {
       },
       backgroundImage: {
         "mobile-bg-light": "url('./src/assets/images/bg-mobile-light.jpg')",
+        "mobile-bg-dark": "url('./src/assets/images/bg-mobile-dark.jpg')",
         "desktop-bg-light": "url('./src/assets/images/bg-desktop-light.jpg')",
+        "desktop-bg-dark": "url('./src/assets/images/bg-desktop-dark.jpg')",
         "check-bg": "linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))",
       },
       colors: {

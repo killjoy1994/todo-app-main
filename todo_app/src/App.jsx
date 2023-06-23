@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import moonLogo from "./assets/images/icon-moon.svg";
@@ -6,33 +6,36 @@ import TextInput from "./components/TextInput";
 import TodoList from "./components/TodoList";
 import TodosFilter from "./components/TodosFilter";
 import Footer from "./components/Footer";
+import { twMerge } from "tailwind-merge";
+
+export const ThemeContext = React.createContext();
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const [activeState, setActiveState] = useState("all")
+  const [activeState, setActiveState] = useState("all");
+  const [theme, setTheme] = useState('light')
 
-  console.log("todos: ", todos)
+  const toggleTheme = () => {
+    setTheme(prevState => {
+      return prevState === "light" ? "dark" : "light"
+    }) 
+  }
+
+  console.log("Theme: ", theme)
+
   return (
-    <div className="min-h-screen ">
-      <div className="w-full h-[30vh] bg-mobile-bg-light xs:bg-desktop-bg-light bg-no-repeat bg-cover bg-top"></div>
-      <div className="mx-auto max-w-[600px] relative top-[-150px] px-6 h-[700px]">
-        <Header />
-        <TextInput setTodos={setTodos} activeState={activeState} 
-        />
-        <TodoList 
-          todos={todos}
-          setTodos={setTodos}
-          activeState={activeState}
-        />
-        <TodosFilter 
-          todos={todos}
-          setTodos={setTodos} 
-          activeState={activeState}
-          setActiveState={setActiveState}
-        />
-        <Footer />
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
+      <div className={twMerge("min-h-screen", theme !== "light" ? "dark dark-bg" : "")}>
+        <div className="w-full h-[30vh] bg-mobile-bg-light dark:bg-mobile-bg-dark xs:bg-desktop-bg-light dark:xs:bg-desktop-bg-dark bg-no-repeat bg-cover bg-top"></div>
+        <div className="mx-auto max-w-[600px] relative top-[-150px] px-6 h-[700px]">
+          <Header />
+          <TextInput setTodos={setTodos} activeState={activeState} />
+          <TodoList todos={todos} setTodos={setTodos} activeState={activeState} />
+          <TodosFilter todos={todos} setTodos={setTodos} activeState={activeState} setActiveState={setActiveState} />
+          <Footer />
+        </div>
       </div>
-    </div>
+    </ThemeContext.Provider>
   );
 }
 

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import TodoItem from "./TodoItem";
+import { ThemeContext } from "../App";
+import { twMerge } from "tailwind-merge";
 
 export default function TodoList({ todos, activeState, setTodos}) {
   let state;
+  const {theme} = useContext(ThemeContext)
 
   if (activeState == "all" || null) {
     state = todos;
@@ -48,7 +51,7 @@ export default function TodoList({ todos, activeState, setTodos}) {
   console.log("State: ", state)
 
   return (
-    <div className="w-full mt-6 rounded bg-white">
+    <div className={twMerge("w-full mt-6 rounded", theme === "light" ? "bg-neutral-light-very-light-gray" : "bg-neutral-dark-very-dark-grayish-blue" )}>
       <div className="flex flex-col gap-y-2 rounded-[inherit]">
         {state.map((todo, index) => {
           return (
