@@ -4,6 +4,7 @@ import {v4 as uuid} from "uuid"
 
 export default function TextInput({ setTodos, setActiveTodos, activeState }) {
   const [todo, setTodo] = useState("");
+  const {theme} = useState
 
   const onKeyDownHandler = (e) => {
     if (e.key === "Enter") {
