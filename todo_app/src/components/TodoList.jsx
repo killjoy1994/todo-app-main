@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import TodoItem from "./TodoItem";
 import { ThemeContext } from "../App";
 import { twMerge } from "tailwind-merge";
 
 export default function TodoList({ todos, activeState, setTodos}) {
+
   let state;
   const {theme} = useContext(ThemeContext)
 
@@ -48,7 +49,9 @@ export default function TodoList({ todos, activeState, setTodos}) {
     setTodos(items);
   };
 
-  console.log("State: ", state)
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(state));
+  }, [state]);
 
   return (
     <div className={twMerge("w-full mt-6 rounded", theme === "light" ? "bg-neutral-light-very-light-gray" : "bg-neutral-dark-very-dark-grayish-blue" )}>
