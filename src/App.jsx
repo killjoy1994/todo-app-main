@@ -12,7 +12,7 @@ export const ThemeContext = React.createContext();
 const loadedTodos = JSON.parse(localStorage.getItem("todos"));
 
 function App() {
-  const [todos, setTodos] = useState(loadedTodos);
+  const [todos, setTodos] = useState(loadedTodos || []);
   const [activeState, setActiveState] = useState("all");
   const [theme, setTheme] = useState("light");
 
